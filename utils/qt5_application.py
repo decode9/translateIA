@@ -45,11 +45,15 @@ class Qt5Application():
     def __translateSpanishToEnglish(self):
         text = self.inputSpanish.toPlainText()
         translation = self.openai_helper.translate('Spanish','English', text)
+        if(translation == 'error'):
+            return self.textEnglish.setText('Ha ocurrido un error intente de nuevo / an error has ocurred try again')
         self.textEnglish.setText(translation)
     
     def __translateEnglishToSpanish(self):
         text = self.inputEnglish.toPlainText()
         translation = self.openai_helper.translate('English','Spanish', text)
+        if(translation == 'error'):
+            return self.textEnglish.setText('Ha ocurrido un error intente de nuevo / an error has ocurred try again')
         self.textSpanish.setText(translation)
     
     def __buildInterface(self):
